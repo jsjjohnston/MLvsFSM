@@ -4,7 +4,7 @@
 /// Decided when to start serching to the right
 /// </summary>
 [CreateAssetMenu(menuName = "StateMachine/Decisions/Search Right Decision")]
-public class SearchRightDecision : Decision {
+public class SearchRightDecision : SMDecision {
 
     /// <summary>
     /// threshold to rotate to teh right

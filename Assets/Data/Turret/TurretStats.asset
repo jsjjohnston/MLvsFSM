@@ -17,4 +17,4 @@ MonoBehaviour:
   attackRate: 1
   attackDamage: 50
   serachDuration: 4
-  serachingTurnSpeed: 30
+  serachingTurnSpeed: 100

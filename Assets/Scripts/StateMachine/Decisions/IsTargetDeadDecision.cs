@@ -3,7 +3,7 @@
 /// Check if target is dead
 /// </summary>
 [CreateAssetMenu(menuName = "StateMachine/Decisions/Is Target Dead")]
-public class IsTargetDeadDecision : Decision
+public class IsTargetDeadDecision : SMDecision
 {
     /// <summary>
     /// Decided if target is dead

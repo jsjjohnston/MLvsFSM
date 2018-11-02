@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "StateMachine/Decisions/Find Target")]
-public class FindTargetDecision : Decision
+public class FindTargetDecision : SMDecision
 {
 
     public override bool Decide(StateController controller)

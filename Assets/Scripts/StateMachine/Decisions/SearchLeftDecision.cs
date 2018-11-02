@@ -4,7 +4,7 @@
 /// Decide when to start searching to the left
 /// </summary>
 [CreateAssetMenu(menuName = "StateMachine/Decisions/Search Left Decision")]
-public class SearchLeftDecision : Decision
+public class SearchLeftDecision : SMDecision
 {
     /// <summary>
     /// Threshold when to start searching to the left
