@@ -34,7 +34,7 @@ public class IsTargetDeadDecision : SMDecision
     /// <returns>True if target is dead False if target is alive</returns>
     private bool CheckTargetDead(TurretStateController controller)
     {
-        bool dead = !controller.target.gameObject.activeSelf;
+        bool dead = controller.targetDead;
         if (dead)
         {
             controller.DoNotFocus();

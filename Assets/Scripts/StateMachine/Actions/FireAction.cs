@@ -28,6 +28,6 @@ public class FireAction : StateMachineAction
     /// <param name="controller">Controller that contains the target</param>
     public void Fire(TurretStateController controller)
     {
-        controller.Fire();
-    }
+		controller.Fire();
+	}
 }

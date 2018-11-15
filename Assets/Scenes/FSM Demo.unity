@@ -821,9 +821,50 @@ Prefab:
       propertyPath: spawnPoints.Array.data[15]
       value: 
       objectReference: {fileID: 1129938369}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114384984692146226, guid: 349eb7b727fb72a45818331087346697, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 349eb7b727fb72a45818331087346697, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &602159446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1106967290204790, guid: 349eb7b727fb72a45818331087346697,
+    type: 2}
+  m_PrefabInternal: {fileID: 602159445}
+--- !u!114 &602159447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 602159446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab24f3d2148e2441864c166b8468e18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: {fileID: 11400000, guid: 2f87b695a7bc3564badeee688e3bf027, type: 2}
+  previousState: {fileID: 0}
+  aiActive: 1
+  turretStats: {fileID: 11400000, guid: 8ea1e203761066c45addfdda4fcc53a9, type: 2}
+  projectilePoint: {fileID: 602159448}
+  spawnPoints:
+  - {fileID: 1170022527}
+  - {fileID: 793822417}
+  - {fileID: 389404932}
+  - {fileID: 1897948182}
+  - {fileID: 643436551}
+  - {fileID: 1821018859}
+  - {fileID: 1693466724}
+  - {fileID: 2022040841}
+  - {fileID: 828895562}
+  - {fileID: 837654375}
+  - {fileID: 1129938369}
+  targetDead: 0
+  target: {fileID: 788965481}
+--- !u!4 &602159448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4458033465843446, guid: 349eb7b727fb72a45818331087346697,
+    type: 2}
+  m_PrefabInternal: {fileID: 602159445}
 --- !u!1 &643436549
 GameObject:
   m_ObjectHideFlags: 0

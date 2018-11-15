@@ -5,29 +5,26 @@
 /// </summary>
 public class TurretStateController : StateController {
 
-    /// <summary>
-    /// Stats for the turret
-    /// </summary>
-    public TurretStats turretStats;
+	/// <summary>
+	/// Stats for the turret
+	/// </summary>
+	public TurretStats turretStats;
 
-    /// <summary>
-    /// Projectile fire point 
-    /// Also where the camera is attached 
-    /// </summary>
-    public Transform projectilePoint;
+	/// <summary>
+	/// Projectile fire point 
+	/// Also where the camera is attached 
+	/// </summary>
+	public Transform projectilePoint;
 
-    /// <summary>
-    /// Target that the turret is focused on and fires at
-    /// </summary>
-    [HideInInspector] public Transform target;
+	public Transform[] spawnPoints;
 
-    /// <summary>
-    /// Pool used to generate bullet
-    /// </summary>
-    public ObjectPooler bulletPool;
+	[HideInInspector] public bool targetDead = false;
 
-    private float tick;
-    private float currentTime;
+	/// <summary>
+	/// Target that the turret is focused on and fires at
+	/// </summary>
+	public Transform target;
+
     private bool focusOnTarget;
 
     /// <summary>
@@ -47,24 +44,13 @@ public class TurretStateController : StateController {
     /// </summary>
     public void Fire()
     {
-        currentTime += Time.deltaTime;
-        if (tick <= currentTime)
-        {
-            GameObject poolable = bulletPool.GetAvailableGameObj();
-            if (poolable == null)
-            {
-                return;
-            }
-
-            var bullet = poolable.GetComponent<BulletAI>();
-            bullet.transform.position = projectilePoint.position;
-            bullet.transform.rotation = projectilePoint.rotation;
-            bullet.SetProjectilePoint(projectilePoint);
-            bullet.gameObject.SetActive(true);
-
-            tick = turretStats.attackRate + currentTime;
-        }
-    }
+		RaycastHit hitInfo;
+		if (Physics.SphereCast(projectilePoint.position, 2.5f, projectilePoint.forward, out hitInfo, 30)
+			&& hitInfo.collider.CompareTag("Player"))
+		{
+			targetDead = true;
+		}
+	}
 
     private void Awake()
     {
@@ -81,6 +67,16 @@ public class TurretStateController : StateController {
         focusOnTarget = false;
     }
 
+	private void Spawn()
+	{
+		int index = Mathf.FloorToInt(
+				Random.Range(0, spawnPoints.Length)
+			);
+
+		target.position = spawnPoints[index].position;
+		targetDead = false;
+	}
+
     protected override void Update()
     {
         base.Update();
@@ -89,5 +85,10 @@ public class TurretStateController : StateController {
             Vector3 targetPos = new Vector3(target.position.x, transform.position.y, target.position.z);
             transform.LookAt(targetPos);
         }
+
+		if (targetDead)
+		{
+			Spawn();
+		}
     }
 }

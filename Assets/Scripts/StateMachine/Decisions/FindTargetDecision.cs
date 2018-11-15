@@ -27,11 +27,21 @@ public class FindTargetDecision : SMDecision
 
         Debug.DrawRay(controller.projectilePoint.position, controller.projectilePoint.forward.normalized * controller.turretStats.lookRange, Color.black);
 
-        if (Physics.SphereCast(controller.projectilePoint.position, controller.turretStats.lookSphereCastRadius, controller.projectilePoint.forward, out hit, controller.turretStats.lookRange)
-            && hit.collider.CompareTag("Player")
-            && controller.target != hit.transform)
+		bool sphereCastHit = Physics.SphereCast(controller.projectilePoint.position, 
+			controller.turretStats.lookSphereCastRadius, 
+			controller.projectilePoint.forward, 
+			out hit, 
+			controller.turretStats.lookRange);
+
+		bool isPlayerTag = false;
+
+		if (sphereCastHit)
+		{
+			isPlayerTag = hit.collider.CompareTag("Player");
+		}
+		
+		if (sphereCastHit && isPlayerTag)
         {
-            controller.target = hit.transform;
             return true;
         }
         else
