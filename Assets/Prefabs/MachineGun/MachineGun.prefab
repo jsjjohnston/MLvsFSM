@@ -87,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4514310129549376}
   m_Layer: 10
-  m_Name: MachineGunML
+  m_Name: MachineGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,5 +459,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 5
   turretStats: {fileID: 11400000, guid: 8ea1e203761066c45addfdda4fcc53a9, type: 2}
-  bulletPool: {fileID: 0}
   projectilePoint: {fileID: 4458033465843446}
+  target: {fileID: 0}
+  goal: {fileID: 0}
+  spawnPoints: []
