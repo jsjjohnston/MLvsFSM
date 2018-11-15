@@ -10,6 +10,8 @@ public class TurretAgent : Agent {
     /// </summary>
     public TurretStats turretStats;
 
+	public DataCollector dataCollector;
+
     /// <summary>
     /// Projectile fire point 
     /// Also where the camera is attached 
@@ -28,7 +30,10 @@ public class TurretAgent : Agent {
             );
 
         target.position = spawnPoints[index].position;
-    }
+
+		// Update Display
+		dataCollector.increaseHit();
+	}
 
     public override void InitializeAgent()
     {
@@ -63,7 +68,7 @@ public class TurretAgent : Agent {
             {
                 // Hit Reward
                 AddReward(+1.0f);
-                Done();
+				Done();
             }
             else if (Physics.SphereCast(projectilePoint.position, 5.0f, projectilePoint.forward, out hitInfo, 30) 
                 && hitInfo.collider.CompareTag("Player"))
