@@ -30,6 +30,7 @@ public class DataCollector : MonoBehaviour{
 
 	private void Update()
 	{
+		gameTimer += Time.deltaTime;
 		updateTimer();
 
 		if (gameTimer > calculationDelay)
@@ -40,6 +41,7 @@ public class DataCollector : MonoBehaviour{
 
 				if (hours < 5)
 				{
+		
 					RecoredPerMinuteData();
 				}
 				currentMinuteCount = 0;
@@ -86,10 +88,9 @@ public class DataCollector : MonoBehaviour{
 
 	public void updateTimer()
 	{
-		gameTimer += Time.deltaTime;
-		seconds = (int)(gameTimer % 60);
-		minutes = (int)(gameTimer / 60) % 60;
-		hours = (int)(gameTimer / 3600) % 24;
+		seconds = (int)(Time.realtimeSinceStartup % 60);
+		minutes = (int)(Time.realtimeSinceStartup / 60) % 60;
+		hours = (int)(Time.realtimeSinceStartup / 3600) % 24;
 	}
 
 	public void updateDisplay()

@@ -10,6 +10,10 @@ public class TurretStateController : StateController {
 	/// </summary>
 	public TurretStats turretStats;
 
+	public Transform goal;
+
+	public DataCollector dataCollector;
+
 	/// <summary>
 	/// Projectile fire point 
 	/// Also where the camera is attached 
@@ -50,6 +54,10 @@ public class TurretStateController : StateController {
 		{
 			targetDead = true;
 		}
+		else
+		{
+			dataCollector.increaseMiss();
+		}
 	}
 
     private void Awake()
@@ -89,6 +97,17 @@ public class TurretStateController : StateController {
 		if (targetDead)
 		{
 			Spawn();
+			
+			// Update Display
+			dataCollector.increaseHit();
 		}
-    }
+
+		// Reached target
+		float distanceToTarget = Vector3.Distance(target.position,
+												  goal.position);
+		if (distanceToTarget < 1.42f)
+		{
+			dataCollector.increaseGoalReached();
+		}
+	}
 }
