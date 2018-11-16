@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Profiling;
+using System.IO;
 
 public class DataCollector : MonoBehaviour{
 
@@ -30,17 +32,21 @@ public class DataCollector : MonoBehaviour{
 	{
 		updateTimer();
 
-
 		if (gameTimer > calculationDelay)
 		{
 			if (seconds == 0)
 			{
 				CalculatePerMinuteAverage();
+
+				if (hours < 5)
+				{
+					RecoredPerMinuteData();
+				}
+				currentMinuteCount = 0;
 			}
 
 			calculationDelay = gameTimer + 1;
 		}
-
 
 		updateDisplay();
 	}
@@ -68,7 +74,6 @@ public class DataCollector : MonoBehaviour{
 	public void CalculatePerMinuteAverage()
 	{
 		minuteAverages.Add(currentMinuteCount);
-		currentMinuteCount = 0;
 		int total = 0;
 
 		foreach (int value in minuteAverages)
@@ -95,5 +100,21 @@ public class DataCollector : MonoBehaviour{
 		textCurrentMinuteCount.text = string.Format("{0:0000}", currentMinuteCount);
 		textPerMinuteAverage.text = string.Format("{0:0000.00}", hitAveragePerMinute);
 		textGoalReached.text = string.Format("{0:0000}", goalReachedCount);
-}
+	}
+
+	private void RecoredPerMinuteData()
+	{
+		string path = "Assets/Resources/perMinuteData.csv";
+		//Write some text to the test.txt file
+		StreamWriter writer = new StreamWriter(path, true);
+		writer.WriteLine(hitCount + "," + 
+			missCount + "," + 
+			currentMinuteCount + "," + 
+			hitAveragePerMinute + "," + 
+			goalReachedCount + "," + 
+			Profiler.GetAllocatedMemoryForGraphicsDriver() + "," +
+			Profiler.GetTotalAllocatedMemoryLong() + "," +
+			Profiler.GetTotalReservedMemoryLong());
+		writer.Close();
+	}
 }
