@@ -75,18 +75,21 @@ public class TurretAgent : Agent {
             {
                 // Close Penilty
                 AddReward(-0.025f);
+				dataCollector.increaseMiss();
             }
             else if (Physics.SphereCast(projectilePoint.position, 7.5f, projectilePoint.forward, out hitInfo, 30) 
                 && hitInfo.collider.CompareTag("Player"))
             {
                 // Near Penilty
                 AddReward(-0.050f);
-            }
+				dataCollector.increaseMiss();
+			}
             else
             {
                 // Miss Penilty
                 AddReward(-0.075f);
-            }
+				dataCollector.increaseMiss();
+			}
         }
         else
         {
@@ -101,6 +104,7 @@ public class TurretAgent : Agent {
         {
             // Reached target
             AddReward(-1.0f);
+			dataCollector.increaseGoalReached();
             Done();
         }
 
