@@ -6,13 +6,15 @@ using System.IO;
 
 public class DataCollector : MonoBehaviour{
 
+	public bool recoredData;
+
 	public Text textTimer;
 	public Text textHitCount;
 	public Text textMissCount;
 	public Text textCurrentMinuteCount;
 	public Text textPerMinuteAverage;
 	public Text textGoalReached;
-
+	
 	private float gameTimer = 0.0f;
 	private int seconds;
 	private int minutes;
@@ -105,17 +107,20 @@ public class DataCollector : MonoBehaviour{
 
 	private void RecoredPerMinuteData()
 	{
-		string path = "Assets/Resources/perMinuteData.csv";
-		//Write some text to the test.txt file
-		StreamWriter writer = new StreamWriter(path, true);
-		writer.WriteLine(hitCount + "," + 
-			missCount + "," + 
-			currentMinuteCount + "," + 
-			hitAveragePerMinute + "," + 
-			goalReachedCount + "," + 
-			Profiler.GetAllocatedMemoryForGraphicsDriver() + "," +
-			Profiler.GetTotalAllocatedMemoryLong() + "," +
-			Profiler.GetTotalReservedMemoryLong());
-		writer.Close();
+		if (recoredData)
+		{
+			string path = "Assets/Resources/perMinuteData.csv";
+			//Write some text to the test.txt file
+			StreamWriter writer = new StreamWriter(path, true);
+			writer.WriteLine(hitCount + "," + 
+				missCount + "," + 
+				currentMinuteCount + "," + 
+				hitAveragePerMinute + "," + 
+				goalReachedCount + "," + 
+				Profiler.GetAllocatedMemoryForGraphicsDriver() + "," +
+				Profiler.GetTotalAllocatedMemoryLong() + "," +
+				Profiler.GetTotalReservedMemoryLong());
+			writer.Close();
+		}
 	}
 }
