@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Decided If Target IS Found
+/// </summary>
 [CreateAssetMenu(menuName = "StateMachine/Decisions/Find Target")]
 public class FindTargetDecision : SMDecision
 {
-
+	/// <summary>
+	/// Decide If Target is found
+	/// </summary>
+	/// <param name="controller"></param>
+	/// <returns>Ture If Target Is Found</returns>
     public override bool Decide(StateController controller)
     {
         bool targetVisible;
@@ -21,6 +28,11 @@ public class FindTargetDecision : SMDecision
         return targetVisible;
     }
 
+	/// <summary>
+	/// Look For Target
+	/// </summary>
+	/// <param name="controller"></param>
+	/// <returns>True If Found</returns>
     private bool Look(TurretStateController controller)
     {
         RaycastHit hit;

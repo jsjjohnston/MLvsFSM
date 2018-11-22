@@ -7,7 +7,7 @@
 public class SearchLeftAction : StateMachineAction
 {
     /// <summary>
-    /// Turn to the left action
+    /// Action to Take
     /// </summary>
     public override void Act(StateController controller)
     {
@@ -21,6 +21,10 @@ public class SearchLeftAction : StateMachineAction
         }
     }
 
+	/// <summary>
+	/// Turn Left Action
+	/// </summary>
+	/// <param name="controller"></param>
     public void TurnLeft(TurretStateController controller)
     {
         controller.transform.Rotate(0, -controller.turretStats.serachingTurnSpeed * Time.deltaTime, 0);

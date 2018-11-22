@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// Simple Seeking Behaviour For Target
+/// </summary>
 public class SeekGoal : MonoBehaviour {
 
     // The target marker.

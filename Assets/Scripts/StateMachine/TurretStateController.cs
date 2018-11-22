@@ -10,8 +10,14 @@ public class TurretStateController : StateController {
 	/// </summary>
 	public TurretStats turretStats;
 
+	/// <summary>
+	/// Gaol The Target Is Trying To Reach
+	/// </summary>
 	public Transform goal;
 
+	/// <summary>
+	/// Data Collecter
+	/// </summary>
 	public DataCollector dataCollector;
 
 	/// <summary>
@@ -20,6 +26,9 @@ public class TurretStateController : StateController {
 	/// </summary>
 	public Transform projectilePoint;
 
+	/// <summary>
+	/// Spawn Points For Target
+	/// </summary>
 	public Transform[] spawnPoints;
 
 	[HideInInspector] public bool targetDead = false;
@@ -29,6 +38,9 @@ public class TurretStateController : StateController {
 	/// </summary>
 	public Transform target;
 
+	/// <summary>
+	/// Tell Update Function to focus on target
+	/// </summary>
     private bool focusOnTarget;
 
     /// <summary>
@@ -44,7 +56,7 @@ public class TurretStateController : StateController {
     }
 
     /// <summary>
-    /// 
+    /// Fire At The Target
     /// </summary>
     public void Fire()
     {
@@ -56,7 +68,7 @@ public class TurretStateController : StateController {
 		}
 		else
 		{
-			dataCollector.increaseMiss();
+			dataCollector.IncreaseMiss();
 		}
 	}
 
@@ -75,6 +87,9 @@ public class TurretStateController : StateController {
         focusOnTarget = false;
     }
 
+	/// <summary>
+	/// Spawn Target
+	/// </summary>
 	private void Spawn()
 	{
 		int index = Mathf.FloorToInt(
@@ -99,7 +114,7 @@ public class TurretStateController : StateController {
 			Spawn();
 			
 			// Update Display
-			dataCollector.increaseHit();
+			dataCollector.IncreaseHit();
 		}
 
 		// Reached target
@@ -107,7 +122,7 @@ public class TurretStateController : StateController {
 												  goal.position);
 		if (distanceToTarget < 1.42f)
 		{
-			dataCollector.increaseGoalReached();
+			dataCollector.IncreaseGoalReached();
 		}
 	}
 }

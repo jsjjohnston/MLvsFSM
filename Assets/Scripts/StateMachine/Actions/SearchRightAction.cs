@@ -21,6 +21,11 @@ public class SearchRightAction : StateMachineAction
         }
     }
 
+
+	/// <summary>
+	/// Turn To The Right Action
+	/// </summary>
+	/// <param name="controller"></param>
     public void TurnRight(TurretStateController controller)
     {
         controller.transform.Rotate(0, controller.turretStats.serachingTurnSpeed * Time.deltaTime, 0);

@@ -4,10 +4,20 @@ using UnityEngine.UI;
 using UnityEngine.Profiling;
 using System.IO;
 
+
+/// <summary>
+/// Collected Data About Perfomance
+/// </summary>
 public class DataCollector : MonoBehaviour{
 
+	/// <summary>
+	/// On/Off To recored the data To File
+	/// </summary>
 	public bool recoredData;
 
+	/// <summary>
+	/// Display results to secreen
+	/// </summary>
 	public Text textTimer;
 	public Text textHitCount;
 	public Text textMissCount;
@@ -15,25 +25,33 @@ public class DataCollector : MonoBehaviour{
 	public Text textPerMinuteAverage;
 	public Text textGoalReached;
 	
+	/// <summary>
+	/// Track Time
+	/// </summary>
 	private float gameTimer = 0.0f;
 	private int seconds;
 	private int minutes;
 	private int hours;
 
+	/// <summary>
+	/// Hit And Miss Count
+	/// </summary>
 	private int hitCount = 0;
 	private int missCount = 0;
 
+	/// <summary>
+	/// Calculate The Arverage Hit Rate  
+	/// </summary>
 	private List<int> minuteAverages = new List<int>();
 	private int currentMinuteCount = 0;
 	private float hitAveragePerMinute = 0;
 	private int goalReachedCount = 0;
-
 	private float calculationDelay = 1.0f;
 
 	private void Update()
 	{
 		gameTimer += Time.deltaTime;
-		updateTimer();
+		UpdateTimer();
 
 		if (gameTimer > calculationDelay)
 		{
@@ -52,21 +70,21 @@ public class DataCollector : MonoBehaviour{
 			calculationDelay = gameTimer + 1;
 		}
 
-		updateDisplay();
+		UpdateDisplay();
 	}
 
-	public void increaseHit()
+	public void IncreaseHit()
 	{
 		hitCount++;
 		currentMinuteCount++;
 	}
 
-	public void increaseGoalReached()
+	public void IncreaseGoalReached()
 	{
 		goalReachedCount++;
 	}
 
-	public void increaseMiss()
+	public void IncreaseMiss()
 	{
 		if (gameTimer > calculationDelay)
 		{ 
@@ -88,14 +106,14 @@ public class DataCollector : MonoBehaviour{
 		hitAveragePerMinute = (float) total / minuteAverages.Count;
 	}
 
-	public void updateTimer()
+	public void UpdateTimer()
 	{
 		seconds = (int)(Time.realtimeSinceStartup % 60);
 		minutes = (int)(Time.realtimeSinceStartup / 60) % 60;
 		hours = (int)(Time.realtimeSinceStartup / 3600) % 24;
 	}
 
-	public void updateDisplay()
+	public void UpdateDisplay()
 	{
 		textTimer.text = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 		textHitCount.text = string.Format("{0:00000}", hitCount);

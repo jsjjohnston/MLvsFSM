@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Abstract Class For Desions
+/// </summary>
 public abstract class SMDecision : ScriptableObject
 {
 
