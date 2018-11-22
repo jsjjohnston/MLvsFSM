@@ -32,7 +32,8 @@ public class TurretAgent : Agent {
         target.position = spawnPoints[index].position;
 
 		// Update Display
-		dataCollector.increaseHit();
+		if (dataCollector != null)
+			dataCollector.increaseHit();
 	}
 
     public override void InitializeAgent()
@@ -75,20 +76,23 @@ public class TurretAgent : Agent {
             {
                 // Close Penilty
                 AddReward(-0.025f);
-				dataCollector.increaseMiss();
+				if (dataCollector != null)
+					dataCollector.increaseMiss();
             }
             else if (Physics.SphereCast(projectilePoint.position, 7.5f, projectilePoint.forward, out hitInfo, 30) 
                 && hitInfo.collider.CompareTag("Player"))
             {
                 // Near Penilty
                 AddReward(-0.050f);
-				dataCollector.increaseMiss();
+				if (dataCollector != null)
+					dataCollector.increaseMiss();
 			}
             else
             {
                 // Miss Penilty
                 AddReward(-0.075f);
-				dataCollector.increaseMiss();
+				if (dataCollector != null)
+					dataCollector.increaseMiss();
 			}
         }
         else
@@ -104,7 +108,8 @@ public class TurretAgent : Agent {
         {
             // Reached target
             AddReward(-1.0f);
-			dataCollector.increaseGoalReached();
+			if (dataCollector != null)
+				dataCollector.increaseGoalReached();
             Done();
         }
 
