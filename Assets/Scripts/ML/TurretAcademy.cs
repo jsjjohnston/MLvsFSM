@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MLAgents;
+﻿using MLAgents;
 
+/// <summary>
+/// Simple Class used for the Turrets Academy
+/// </summary>
 public class TurretAcademy : Academy {
 }
