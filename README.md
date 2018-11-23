@@ -16,4 +16,4 @@ Demos of the project can be found in the scene folder and should work without an
 ### Training
 To Train Models Tensorflow is required to be installed
 
-**Winodws** Please Follow The Instractions Fround [Here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md)
+**Windows** Please Follow The Instractions Fround [Here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Installation-Windows.md)
